@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+# Automated Web Scraping Script For Etsy
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple script made for scraping product data from https://www.etsy.com
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm run start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Runs the script, It is set to headless:false for better tracking if you want
+the best performance make sure to set headless to true.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Assumptions Made
 
-### `npm test`
+It was an interesting journey creating this project and starting from 0 knowledge about web scraping. Comming from a
+Front-End background this was a new and refreshing project to work on.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Setting up:
 
-### `npm run build`
+It took me some time to set everything up and running and to get familiar with the functions Puppeteer offers. They
+did a great job of documenting it and making it easy for developers to use the library without any prior knowledge.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Interacting with Etsy
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The first few interactions were not so friendly, as i ran in to bot detection, network issues and all other kinds of
+problems.
+I started to tackle them one by one and finaly made a break through. I can say with certainty that the start was filled
+with most issues and bugs
+but also that i gained the most knowledge from it.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Finalising the script
 
-### `npm run eject`
+Okay so by know i made a functional script but honestly it was very basic and could have used some improvements. So i
+spent
+some time working on reducing the chance of it being seen by bot detection, improving its speed and quality as well as
+organizing the
+code.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Challenges
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Bot detection
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+It took me some time to figure out ways to bypass the bot detection. I figured out i can use some "human" movements
+to make them less suspicious. Setting cookies also helped. I tried shuffling between free proxies i found on the
+internet
+but decide not to use them since they only worked for a few hours. If i was serious id get some good proxies and
+randomly use them to bypass the
+detection system. Slowing done the script a bit also helped but had the obvious disadvantage to it.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Increase Speed and Efficiency
 
-## Learn More
+I made a working scraping script but wasn't that satisfied by the speed it was going so i took some time
+to improve on it. I used cluster to help me with that so i can extract the data from product details page efficiently.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Improvements
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Dealing With Detection
 
-### Code Splitting
+I added different proxies to avoid detection as well as setting up cookies and
+random user agents. I also set up extra HTTP headers with random user agents decreasing my chance
+of being seen by bot detection. Made sure to use puppeteer stealth library to additionally improve scrips security.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Flexible Script
 
-### Analyzing the Bundle Size
+Made sure the script is flexible and support pagination. I made it so the person that is using
+the script can easily choose the number of products and pages they want to scrape, instead of just hard coding the values.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+### Compatible with all products
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+I found some products have different required fields such as personalized textareas or 
+multiple dropdowns. I made the script flexible the all of those products, with or without it.
 
-### Advanced Configuration
+### Headless Mode friendly
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Made the script friendly with the headless mode with console.logs so the person thats
+using the script in headless mode can see whats happening :).
