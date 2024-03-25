@@ -50,7 +50,7 @@ const scrapeEtsyProducts = async () => {
       const nextButton = await page.$('.search-pagination > li:last-child a')
       while (count < amountOfPages) {
         let scrapedProductsPerPage = await page.evaluate(() => {
-          const numberOfProducts = 3;
+          const numberOfProducts = 10;
           const products: HTMLElement[] = Array.from(document.querySelectorAll<HTMLElement>('.v2-listing-card')).slice(0, numberOfProducts)
           return products.map((item: Element) => {
             return {
@@ -129,7 +129,7 @@ const scrapeEtsyProducts = async () => {
         const images = Array.from(document.querySelectorAll('.carousel-pane-list li img'))
         let availableOptions = null
         if (allOptions.length) {
-          // Grabs all of the options and their names
+          // Grabs all the options and their names
           availableOptions = allOptions.map((item: any) => {
             const optionName = item.querySelector('div label [data-label]').textContent.trim()
             item.querySelector('div select').click()
@@ -139,7 +139,7 @@ const scrapeEtsyProducts = async () => {
             return { [optionName]: options }
           })
         }
-        // Grabs all of the product images
+        // Grabs all the product images
         const img = images.map((item: any) => {
           return item.getAttribute('src')
         })
@@ -177,14 +177,13 @@ const scrapeEtsyProducts = async () => {
       productsArray.push(product)
     })
 
-    // Goes to all of the extracted urls and grabs their data
+    // Goes to all the extracted urls and grabs their data
     for (const pageUrl of extractedUrls) {
       await setTimeout(500);
       await cluster.execute([pageUrl.urls, pageUrl.index])
     }
 
     await saveData(productsArray, 'clusterData.json');
-
 
 
     await cluster.idle();

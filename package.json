@@ -20,7 +20,7 @@
     ]
   },
   "scripts": {
-    "start": "ts-node-esm src/ScrapeEtsyProducts.ts",
+    "start": "ts-node-esm src/ScrapeEtsyProducts.ts"
   },
   "browserslist": {
     "production": [
